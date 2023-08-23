@@ -2,28 +2,18 @@ import { connectDb } from "@/helper/db";
 import { User } from "@/models/user";
 import { NextResponse } from "next/server"
 
-
 connectDb();
-export const GET = (request) => {
+//API for getting all users
+export const GET =async (request) => {
 
-    const arr = [{
-        name: "Pranjal",
-        age: "24"
-    },
-    {
-        name: "Amit",
-        age: "24"
-    },
-    {
-        name: "Ravi",
-        age: "24"
+    let getAllUsers = [];
+    try {
+     getAllUsers=await User.find();
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({ message: "Error getting user", status: "False" }, { status: 200 });
     }
-        , {
-        name: "Sachin",
-        age: "24"
-    }]
-
-    return NextResponse.json(arr);
+    return NextResponse.json(getAllUsers);
 }
 
 
@@ -42,12 +32,12 @@ export const POST = async (request) => {
             address: {
                 street: address.street || "",
                 city: address.city || "",
-                pincode: address.pincode || ""
+                pincode: address.pincode || 0
             }
         })
         const createdUser = await user.save();
         console.log("User is created")
-        return NextResponse.json(user, { status: 201, statusText: "createdUser" });
+        return NextResponse.json(createdUser, { status: 201, statusText: "createdUser" });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Error creating user", status: "False" }, { status: 200 });

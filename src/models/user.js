@@ -5,6 +5,7 @@ name:String,
 email:{
     type:String,
     required:[true,"Email Required !!"],
+    unique:true
 },
 password:{
     type:String,
