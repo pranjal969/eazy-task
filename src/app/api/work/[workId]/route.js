@@ -28,7 +28,7 @@ export const PUT = async (request, { params }) => {
         const work = await Work.findById(workId);
         if (work) {
             // fetch work details from request
-            const {title, description, status, author, category } = await request.json();
+            const { title, description, status, author, category } = await request.json();
             //create work object with user model
 
             work.title = title;
@@ -46,6 +46,20 @@ export const PUT = async (request, { params }) => {
 
     } catch (error) {
         return NextResponse.json({ message: "Error updating work ", status: "False" }, { status: 200 });
+    }
+
+}
+
+// delete work by id
+export const DELETE = async (request, { params }) => {
+
+    const { workId } = await params;
+
+    try {
+        const work = await Work.deleteOne({ _id: workId });
+        return NextResponse.json({ message: "Work Deleted successfully", status: "True" }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ message: "Error deleting work", status: "False" }, { status: 200 });
     }
 
 }
