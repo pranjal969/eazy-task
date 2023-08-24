@@ -8,7 +8,7 @@ export const GET = async (request, { params }) => {
     const { userId } = await params;
 
     try {
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).select("-password");
         return NextResponse.json(user || { message: "User not found", status: "False" });
     } catch (error) {
         return NextResponse.json({ message: "Error getting user", status: "False" }, { status: 200 });

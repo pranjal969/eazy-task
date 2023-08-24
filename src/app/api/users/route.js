@@ -8,7 +8,7 @@ export const GET =async (request) => {
 
     let getAllUsers = [];
     try {
-     getAllUsers=await User.find();
+     getAllUsers=await User.find().select("-password");
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Error getting user", status: "False" }, { status: 200 });
