@@ -36,7 +36,7 @@ export const PUT = async (request, { params }) => {
             work.status = status;
             work.author = author;
             work.category = category;
-            work.userId = userId;
+            // work.userId = userId || "";
             const savedWork = work.save();
             return NextResponse.json({ message: "Work details updated successfully", status: "True" }, { status: 200 });
         }
@@ -45,6 +45,7 @@ export const PUT = async (request, { params }) => {
         }
 
     } catch (error) {
+        console.log(error)
         return NextResponse.json({ message: "Error updating work ", status: "False" }, { status: 200 });
     }
 
