@@ -17,6 +17,9 @@ const workSchema = new Schema({
     addedDate: {
         type: Date,
         default: Date.now,
+    },
+    userId: {
+        type: mongoose.ObjectId,
     }
 });
 

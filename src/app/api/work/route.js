@@ -22,14 +22,15 @@ export const GET =async (request) => {
 export const POST = async (request) => {
     try {
         // fetch user details from request
-        const { title, description, status, author, category } =await request.json();
+        const { title, description, status, author, category,userId } =await request.json();
         //create user object with user model
         const work = new Work({
             title, 
             description, 
             status, 
             author, 
-            category
+            category,
+            userId
         })
         const createdWork = await work.save();
         console.log("work is created")

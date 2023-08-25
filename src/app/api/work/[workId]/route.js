@@ -28,7 +28,7 @@ export const PUT = async (request, { params }) => {
         const work = await Work.findById(workId);
         if (work) {
             // fetch work details from request
-            const { title, description, status, author, category } = await request.json();
+            const { title, description, status, author, category, userId } = await request.json();
             //create work object with user model
 
             work.title = title;
@@ -36,7 +36,7 @@ export const PUT = async (request, { params }) => {
             work.status = status;
             work.author = author;
             work.category = category;
-
+            work.userId = userId;
             const savedWork = work.save();
             return NextResponse.json({ message: "Work details updated successfully", status: "True" }, { status: 200 });
         }
