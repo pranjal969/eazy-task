@@ -20,6 +20,7 @@ const workSchema = new Schema({
     },
     userId: {
         type: mongoose.ObjectId,
+        required: [true, "userId Required !!"],
     }
 });
 
