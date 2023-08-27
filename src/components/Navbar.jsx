@@ -2,6 +2,7 @@ import React from 'react';
 
 const Navbar = () => {
   return ( 
+      // changes in nav 
     <nav className="bg-[#a5b4fc] p-1">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <a href="#" className="text-white text-xl font-bold flex items-center mb-2 md:mb-0">
