@@ -14,10 +14,11 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <ul className="navbar-nav flex space-x-4 md:space-x-6 mt-2 md:mt-0 md:flex-row">
-          <li><Link href="/" className="text-white">Home</Link></li>
-          <li><Link href="/about" className="text-white">About</Link></li>
-          <li><Link href="/profile" className="text-white">Profile</Link></li>
-          <li><Link href="#" className="text-white">Logout</Link></li>
+        <li><Link href="/" className="text-white hover:text-blue-100">Home</Link></li>
+          <li><Link href="/add-task" className="text-white  hover:text-blue-100">Add Task</Link></li>
+          <li><Link href="/about" className="text-white  hover:text-blue-100">About</Link></li>
+          <li><Link href="/profile" className="text-white  hover:text-blue-100">Profile</Link></li>
+          <li><Link href="#" className="text-white  hover:text-blue-100">Logout</Link></li>
         </ul>
       </div>
     </nav>
