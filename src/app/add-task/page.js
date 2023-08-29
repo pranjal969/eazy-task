@@ -30,9 +30,12 @@ const AddTaskPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center ">
       <form onSubmit={handleSubmit} className="w-full max-w-4xl p-4 bg-white rounded shadow-md">
-        <h2 className="text-2xl font-semibold mb-4">Add Task</h2>
+        <div className='flex justify-center'>
+          <img src="/task.png" width={"100px"} height={"100px"} alt="" />
+        </div>
+        <h2 className="text-2xl font-semibold mb-4 flex justify-center">Add Task</h2>
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <TextField
@@ -95,7 +98,7 @@ const AddTaskPage = () => {
             />
           </Grid>
         </Grid>
-        <Button  className="bg-blue-500 hover:bg-blue-600 text-white" type="submit" variant="contained" color="primary" fullWidth>
+        <Button  className="bg-blue-500 hover:bg-blue-600 text-white " type="submit" variant="contained" color="primary" fullWidth>
           Submit
         </Button>
       </form>
