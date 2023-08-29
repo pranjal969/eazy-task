@@ -98,9 +98,11 @@ const AddTaskPage = () => {
             />
           </Grid>
         </Grid>
-        <Button  className="bg-blue-500 hover:bg-blue-600 text-white " type="submit" variant="contained" color="primary" fullWidth>
-          Submit
-        </Button>
+        <div className='mt-2 mb-8'>
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white " type="submit" variant="contained" color="primary" fullWidth>
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   );
