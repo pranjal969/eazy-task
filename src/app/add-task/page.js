@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { TextField, Grid, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { addTask } from '@/services/taskService';
+import { toast } from 'react-toastify';
 
 const initialFormData = {
   title: '',
@@ -31,16 +32,20 @@ const AddTaskPage = () => {
     try {
       const result = addTask(formData);
       console.log(result);
+      toast.success("Task added successfully", {
+        position: 'top-left',
+        autoClose: 3000,
+      })
     } catch (error) {
       console.log(error)
     }
   };
 
   return (
-    <div className='fluid-container'>
-      <div className="flex justify-center items-center mt-5">
+    <div className='fluid-container '>
+      <div className="flex justify-center items-center ">
         <form onSubmit={handleSubmit} className="w-full max-w-4xl p-4 bg-white rounded shadow-md">
-          <div className='flex justify-center'>
+          <div className='flex justify-center mt-20'>
             <img src="/task.png" width={"100px"} height={"100px"} alt="" />
           </div>
           <h2 className="text-2xl font-semibold mb-4 flex justify-center">Add Task</h2>
@@ -64,7 +69,7 @@ const AddTaskPage = () => {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid className='mt-4' item xs={6}>
+            <Grid className='margin-custom' item xs={6}>
               <FormControl fullWidth>
                 <InputLabel>Status</InputLabel>
                 <Select
@@ -73,9 +78,9 @@ const AddTaskPage = () => {
                   value={formData.status}
                   onChange={handleChange}
                 >
-                  <MenuItem value="Select Status" disabled>Select Status</MenuItem>
-                  <MenuItem value="Completed">Completed</MenuItem>
-                  <MenuItem value="Pending">Pending</MenuItem>
+                    <MenuItem value="Select Status" disabled>Select Status</MenuItem>
+                    <MenuItem value="Completed">Completed</MenuItem>
+                    <MenuItem value="Pending">Pending</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

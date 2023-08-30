@@ -4,7 +4,7 @@ import React from 'react';
 const Navbar = () => {
   return ( 
       // changes in nav 
-    <nav className="bg-[#a5b4fc] p-1">
+    <nav className="bg-[#a5b4fc] p-1 top-0 z-10 fixed w-full">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <Link href="/" className="text-white text-xl font-bold flex items-center mb-2 md:mb-0">
           <img src="task.png" width="60px" height="30px" alt="" />

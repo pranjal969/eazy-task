@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 
+.margin-custom{
+    margin-top: 15px !important;
+}
+
