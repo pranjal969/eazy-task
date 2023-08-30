@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { TextField, Grid, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { addTask } from '@/services/taskService';
 
 const initialFormData = {
   title: '',
@@ -27,7 +28,12 @@ const AddTaskPage = () => {
     e.preventDefault();
     // Handle form submission here
     // Add validations over here
-    console.log(formData);
+    try {
+      const result = addTask(formData);
+      console.log(result);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
