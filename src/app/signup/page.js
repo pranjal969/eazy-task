@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { addUser } from '@/services/userService';
-
+import { toast } from 'react-toastify';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -40,11 +40,21 @@ const SignupPage = () => {
   const handleSubmit =async (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Form submitted with data:', formData);
-
-    const result =await addUser(formData);
-    console.log(result);
-    // You can send the form data to your server or perform any other actions.
+    try {
+      console.log('Form submitted with data:', formData);
+      const result =await addUser(formData);
+      console.log(result); 
+      toast.success("Signup Successfull", {
+        position: 'top-left',
+        autoClose: 3000,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Error creating user", {
+        position: 'top-left',
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
