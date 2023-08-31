@@ -25,12 +25,12 @@ const AddTaskPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
     // Add validations over here
     try {
-      const result = addTask(formData);
+      const result = await addTask(formData);
       console.log(result);
       toast.success("Task added successfully", {
         position: 'top-left',
@@ -38,7 +38,11 @@ const AddTaskPage = () => {
       });
       setFormData(initialFormData);
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      toast.error("Error adding task", {
+        position: 'top-left',
+        autoClose: 3000,
+      });
     }
   };
 
@@ -46,10 +50,10 @@ const AddTaskPage = () => {
     <div className='fluid-container '>
       <div className="flex justify-center items-center ">
         <form onSubmit={handleSubmit} className="w-full max-w-4xl p-4 bg-white rounded shadow-md">
-          <div className='flex justify-center mt-20'>
+          <div className='flex justify-center mt-4'>
             <img src="/task.png" width={"100px"} height={"100px"} alt="" />
           </div>
-          <h2 className="text-2xl font-semibold mb-4 flex justify-center">Add Task</h2>
+          <h2 className="text-2xl font-semibold mb-2 flex justify-center">Add Task</h2>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -117,10 +121,13 @@ const AddTaskPage = () => {
               />
             </Grid>
           </Grid>
-          <div className='mt-2 mb-8'>
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white " type="submit" variant="contained" color="primary" fullWidth>
-              Submit
-            </Button>
+          <div className="text-center ">
+            <button
+              type="submit"
+              className="bg-blue-500 mt-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            >
+              Add task
+            </button>
           </div>
         </form>
       </div>

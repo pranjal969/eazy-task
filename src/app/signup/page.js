@@ -1,38 +1,61 @@
 'use client'
 import React, { useState } from 'react';
+import Image from 'next/image';
+import { addUser } from '@/services/userService';
+
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
-    name: 'John Doe',
-    email: 'johnj2@example.com',
-    password: 'securePassword123',
-    about: 'A little bit about me...',
-    profileUrl: 'https://example.com/profile/john',
+    name: '',
+    email: '',
+    password: '',
+    about: '',
+    profileUrl: '',
     address: {
-      street: '123 Main Street',
-      city: 'Cityville',
+      street: '',
+      city: '',
     },
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (name.includes('.')) {
+      // Handle nested fields by splitting the name and updating the state accordingly
+      const [fieldName, nestedField] = name.split('.');
+      setFormData((prevData) => ({
+        ...prevData,
+        [fieldName]: {
+          ...prevData[fieldName],
+          [nestedField]: value,
+        },
+      }));
+    } else {
+      // Handle non-nested fields
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
     // Handle form submission here
     console.log('Form submitted with data:', formData);
+
+    const result =await addUser(formData);
+    console.log(result);
     // You can send the form data to your server or perform any other actions.
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="bg-white p-8 rounded shadow-md w-2/4">
-        <h2 className="text-2xl font-semibold mb-4">Sign Up</h2>
+
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "10px" }}>
+          <Image style={{ borderRadius: '50% ' }} src="/signup.svg" alt="Signup" width={120} height={130} layout="fixed" />
+        </div>
+
+        <h2 className="text-2xl font-semibold mb-4  text-center">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4 flex justify-between">
             <div className="w-1/2 pr-2">
@@ -42,7 +65,7 @@ const SignupPage = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
                 required
               />
             </div>
@@ -53,7 +76,8 @@ const SignupPage = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+                autoComplete="off"
+                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
                 required
               />
             </div>
@@ -66,29 +90,28 @@ const SignupPage = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
                 required
               />
             </div>
             <div className="w-1/2 pl-2">
               <label className="block text-gray-600">About</label>
-              <textarea
+              <input
                 name="about"
                 value={formData.about}
                 onChange={handleChange}
-                className="w-full border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
-                rows="4"
-              ></textarea>
+                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+              ></input>
             </div>
           </div>
           <div className="mb-4">
             <label className="block text-gray-600">Profile URL</label>
             <input
-              type="url"
+            type="text"
               name="profileUrl"
               value={formData.profileUrl}
               onChange={handleChange}
-              className="w-full border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+              className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
             />
           </div>
           <div className="mb-4 flex justify-between">
@@ -96,20 +119,20 @@ const SignupPage = () => {
               <label className="block text-gray-600">Street Address</label>
               <input
                 type="text"
-                name="street"
+                name="address.street"
                 value={formData.address.street}
                 onChange={handleChange}
-                className="w-full border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
               />
             </div>
             <div className="w-1/2 pl-2">
               <label className="block text-gray-600">City</label>
               <input
                 type="text"
-                name="city"
+                name="address.city"
                 value={formData.address.city}
                 onChange={handleChange}
-                className="w-full border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
               />
             </div>
           </div>
