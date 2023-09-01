@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google'
 import Footer from '@/components/Footer'
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-multi-carousel/lib/styles.css';
-
 import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ['latin'] })

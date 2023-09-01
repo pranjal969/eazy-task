@@ -1,4 +1,7 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; 
 
 const Testimonials = () => {
   // Dummy testimonials data

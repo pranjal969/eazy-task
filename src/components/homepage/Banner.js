@@ -16,10 +16,10 @@ const Banner = () => {
             Keep track of your tasks, set due dates, and receive reminders.
           </p>
           <div className="mt-8">
-            <Button variant="contained" color="primary" className="custrmr">
+            <Button variant="contained" color="secondary" className="custrmr">
               Add Task
             </Button>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" className='cstmd'>
               Set Reminders
             </Button>
           </div>
