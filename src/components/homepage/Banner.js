@@ -2,6 +2,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Banner = () => {
   return (
@@ -15,7 +16,7 @@ const Banner = () => {
             Keep track of your tasks, set due dates, and receive reminders.
           </p>
           <div className="mt-8">
-            <Button variant="contained" color="primary" className="mr-4">
+            <Button variant="contained" color="primary" className="custrmr">
               Add Task
             </Button>
             <Button variant="contained" color="secondary">
@@ -24,13 +25,20 @@ const Banner = () => {
           </div>
         </div>
         <div className="w-1/3">
+          <div >
+          <Link href="/signup" className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          
           <Image
-            src="/banner.png"
-            alt="Eazy Task Banner"
-            width={700} // Increase the width
-            height={300}
-            className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-          />
+              src="/banner.png"
+              alt="Eazy Task Banner"
+              width={700}
+              height={300}
+              className="rounded-lg"
+            />
+          </Link>
+          </div>
+
+
         </div>
       </div>
     </div>

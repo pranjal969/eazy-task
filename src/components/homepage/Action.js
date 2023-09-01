@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link';
 import React from 'react';
 
 const ActionSection = () => {
@@ -11,12 +12,12 @@ const ActionSection = () => {
           Join Eazy Task today and supercharge your productivity!
         </p>
         <div className="flex justify-center">
-          <a
+          <Link
             href="/signup" // Replace with the actual signup page URL
             className="bg-[#ff4b2b] hover:bg-[#e83e0a] text-white font-semibold py-3 px-6 rounded-full text-lg transition-all duration-300 ease-in-out transform hover:scale-105"
           >
             Sign Up
-          </a>
+          </Link>
         </div>
       </div>
     </section>
