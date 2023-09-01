@@ -47,9 +47,9 @@ const AddTaskPage = () => {
   };
 
   return (
-    <div className='fluid-container '>
+    <div className='fluid-container bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]'>
       <div className="flex justify-center items-center ">
-        <form onSubmit={handleSubmit} className="w-full max-w-4xl p-4 bg-white rounded shadow-md">
+        <form onSubmit={handleSubmit} className="w-full max-w-4xl mt-5 p-4 rounded shadow-md bg-[#e5e9f1] mb-4 ">
           <div className='flex justify-center mt-4'>
             <img src="/task.png" width={"100px"} height={"100px"} alt="" />
           </div>

@@ -58,8 +58,8 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded shadow-md w-2/4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]">
+      <div className="bg-[#e5e9f1] p-8 rounded shadow-md w-2/4">
 
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "10px" }}>
           <Image style={{ borderRadius: '50% ' }} src="/signup.svg" alt="Signup" width={120} height={130} layout="fixed" />
