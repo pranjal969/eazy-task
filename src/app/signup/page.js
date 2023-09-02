@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { addUser } from '@/services/userService';
 import { toast } from 'react-toastify';
+import { Grid, TextField, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -37,13 +38,13 @@ const SignupPage = () => {
       }));
     }
   };
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
     try {
       console.log('Form submitted with data:', formData);
-      const result =await addUser(formData);
-      console.log(result); 
+      const result = await addUser(formData);
+      console.log(result);
       toast.success("Signup Successfull", {
         position: 'top-left',
         autoClose: 3000,
@@ -58,98 +59,127 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]">
-      <div className="bg-[#e5e9f1] p-8 rounded shadow-md w-2/4">
+    <div className='fluid-container bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]'>
 
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: "10px" }}>
-          <Image style={{ borderRadius: '50% ' }} src="/signup.svg" alt="Signup" width={120} height={130} layout="fixed" />
-        </div>
+      <div className="flex justify-center items-center ">
+        <form onSubmit={handleSubmit} className="w-full max-w-4xl mt-5 p-4 rounded shadow-md bg-[#e5e9f1] mb-4 ">
+          <div className='flex justify-center mt-4' >
+            <img style={{ borderRadius: '50%' }}
+              src="/signup.svg" width={"100px"} height={"100px"} alt="" />
+          </div>
 
-        <h2 className="text-2xl font-semibold mb-4  text-center">Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4 flex justify-between">
-            <div className="w-1/2 pr-2">
-              <label className="block text-gray-600">Name</label>
-              <input
-                type="text"
+          <h2 className="text-2xl font-semibold mb-2 flex justify-center">Sign Up</h2>
+
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TextField
+                label="Name"
                 name="name"
+                fullWidth
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
                 required
               />
-            </div>
-            <div className="w-1/2 pl-2">
-              <label className="block text-gray-600">Email</label>
-              <input
-                type="email"
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Email"
                 name="email"
+                fullWidth
                 value={formData.email}
                 onChange={handleChange}
                 autoComplete="off"
-                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
                 required
               />
-            </div>
-          </div>
-          <div className="mb-4 flex justify-between">
-            <div className="w-1/2 pr-2">
-              <label className="block text-gray-600">Password</label>
-              <input
-                type="password"
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Password"
                 name="password"
+                type="password"
+                fullWidth
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
+                autoComplete='off'
                 required
               />
-            </div>
-            <div className="w-1/2 pl-2">
-              <label className="block text-gray-600">About</label>
-              <input
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="About"
                 name="about"
+                fullWidth
                 value={formData.about}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
-              ></input>
-            </div>
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-600">Profile URL</label>
-            <input
-            type="text"
-              name="profileUrl"
-              value={formData.profileUrl}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
-            />
-          </div>
-          <div className="mb-4 flex justify-between">
-            <div className="w-1/2 pr-2">
-              <label className="block text-gray-600">Street Address</label>
-              <input
-                type="text"
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <FormControl fullWidth>
+                <InputLabel>Status</InputLabel>
+                <Select
+                  label="Status"
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  required
+                >
+                  <MenuItem value="Select Status" disabled>Select Status</MenuItem>
+                  <MenuItem value="Completed">Completed</MenuItem>
+                  <MenuItem value="Pending">Pending</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="Author"
+                name="author"
+                fullWidth
+                value={formData.author}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="Category"
+                name="category"
+                fullWidth
+                value={formData.category}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="User ID"
+                name="userId"
+                fullWidth
+                value={formData.userId}
+                onChange={handleChange}
+                disabled
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="Street Address"
                 name="address.street"
+                fullWidth
                 value={formData.address.street}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
               />
-            </div>
-            <div className="w-1/2 pl-2">
-              <label className="block text-gray-600">City</label>
-              <input
-                type="text"
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="City"
                 name="address.city"
+                fullWidth
                 value={formData.address.city}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 p-2"
               />
-            </div>
-          </div>
-          <div className="text-center">
+            </Grid>
+            </Grid>
+            <div className="text-center ">
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              className="bg-blue-500 mt-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
             >
               Sign Up
             </button>
@@ -158,6 +188,8 @@ const SignupPage = () => {
       </div>
     </div>
   );
+
+
 };
 
 export default SignupPage;
