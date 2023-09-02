@@ -11,15 +11,15 @@ const ContactUs = () => {
           <form className="max-w-md mx-auto">
             <div className="mb-4">
               <label htmlFor="name" className="block text-lg text-white mb-2">Name</label>
-              <input type="text" id="name" className="w-full p-2 rounded-lg bg-white" placeholder="Your Name" />
+              <input type="text" id="name" className="w-full p-2 rounded-lg text-black bg-white" placeholder="Your Name" />
             </div>
             <div className="mb-4">
               <label htmlFor="email" className="block text-lg text-white mb-2">Email</label>
-              <input type="email" id="email" className="w-full p-2 rounded-lg bg-white" placeholder="Your Email" />
+              <input type="email" id="email" className="w-full p-2 rounded-lg text-black bg-white" placeholder="Your Email" />
             </div>
             <div className="mb-6">
               <label htmlFor="message" className="block text-lg text-white mb-2">Message</label>
-              <textarea id="message" className="w-full p-2 rounded-lg bg-white" rows="4" placeholder="Your Message"></textarea>
+              <textarea id="message" className="w-full p-2 rounded-lg bg-white text-black"  rows="4" placeholder="Your Message"></textarea>
             </div>
             <button
               type="submit"

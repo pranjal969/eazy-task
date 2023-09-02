@@ -40,6 +40,6 @@ export const POST = async (request) => {
         return NextResponse.json(createdUser, { status: 201, statusText: "createdUser" });
     } catch (error) {
         console.log(error);
-        return NextResponse.json({ message: "Error creating user", status: "False" }, { status: 200 });
+        return NextResponse.json({ message: "Error creating user", status: "False" }, { status: 400 });
     }
 }
