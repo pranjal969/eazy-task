@@ -29,7 +29,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="transform hover:scale-105">
-            <Link href="/profile" className="text-white text-md text-lg py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+            <Link href="/profile" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
               Profile
             </Link>
           </li>
@@ -41,6 +41,7 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
+
   );
 };
 
