@@ -33,7 +33,7 @@ const Testimonials = () => {
     <section className="bg-gradient-to-r from-[#a5b4fc] via-[#9b63cd] to-[#a5b4fc] py-16">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl text-white font-semibold mb-6">What Our Users Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pr-2 pl-2 ml-2 mr-2">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}

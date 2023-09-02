@@ -3,10 +3,10 @@ import { FaTasks, FaClock, FaCheckCircle } from 'react-icons/fa';
 
 const Features = () => {
   return (
-    <section className="bg-gradient-to-r from-[#7991d1] via-[#a5b4fc] to-[#ee634a] py-16 shadow-xl"> {/* Set your desired background color */}
-      <div className="container mx-auto text-center">
+    <section className="pr-2 pl-2  bg-gradient-to-r from-[#7991d1] via-[#a5b4fc] to-[#ee634a] py-16 shadow-xl"> {/* Set your desired background color */}
+      <div className="container mx-auto text-center ">
         <h2 className="text-3xl font-semibold mb-6 text-white">Key Features</h2> {/* Set text color to white */}
-        <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-12">
+        <div className="ml-2 mr-2 flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-12">
           {/* Feature 1 */}
           <div className="flex items-center space-x-4">
             <div className="rounded-full bg-blue-500 p-3 text-white">
