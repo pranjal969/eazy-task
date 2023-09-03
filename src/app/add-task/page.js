@@ -51,7 +51,7 @@ const AddTaskPage = () => {
       <div className="flex justify-center items-center ">
         <form onSubmit={handleSubmit} className="w-full max-w-4xl mt-5 p-4 rounded shadow-md bg-[#e5e9f1] mb-4 ">
           <div className='flex justify-center mt-4'>
-            <img src="/task.png" width={"100px"} height={"100px"} alt="" />
+            <img src="/task.png" width={"80px"} height={"80px"} alt="" />
           </div>
           <h2 className="text-2xl font-semibold mb-2 flex justify-center">Add Task</h2>
           <Grid container spacing={2}>
