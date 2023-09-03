@@ -62,16 +62,16 @@ const SignupPage = () => {
     <div className='fluid-container bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]'>
 
       <div className="flex justify-center items-center ">
-        <form onSubmit={handleSubmit} className="w-full max-w-4xl mt-5 p-4 rounded shadow-md bg-[#e5e9f1] mb-4 ">
-          <div className='flex justify-center mt-4' >
+        <form onSubmit={handleSubmit} className="w-full max-w-4xl mt-2 p-20 rounded shadow-md bg-[#e5e9f1] mb-4 ">
+          <div className='flex justify-center mb-2' >
             <img style={{ borderRadius: '50%' }}
               src="/signup.svg" width={"100px"} height={"100px"} alt="" />
           </div>
 
-          <h2 className="text-2xl font-semibold mb-2 flex justify-center">Sign Up</h2>
+          <h2 className="text-2xl font-semibold mb-2 mt-2 flex justify-center">Sign Up</h2>
 
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <TextField
                 label="Name"
                 name="name"
@@ -81,7 +81,7 @@ const SignupPage = () => {
                 required
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <TextField
                 label="Email"
                 name="email"
@@ -92,7 +92,7 @@ const SignupPage = () => {
                 required
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <TextField
                 label="Password"
                 name="password"
@@ -104,7 +104,16 @@ const SignupPage = () => {
                 required
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="Profile Url"
+                name="profileUrl"
+                fullWidth
+                value={formData.profileUrl}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 label="About"
                 name="about"
@@ -113,50 +122,7 @@ const SignupPage = () => {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
-              <FormControl fullWidth>
-                <InputLabel>Status</InputLabel>
-                <Select
-                  label="Status"
-                  name="status"
-                  value={formData.status}
-                  onChange={handleChange}
-                  required
-                >
-                  <MenuItem value="Select Status" disabled>Select Status</MenuItem>
-                  <MenuItem value="Completed">Completed</MenuItem>
-                  <MenuItem value="Pending">Pending</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                label="Author"
-                name="author"
-                fullWidth
-                value={formData.author}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                label="Category"
-                name="category"
-                fullWidth
-                value={formData.category}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                label="User ID"
-                name="userId"
-                fullWidth
-                value={formData.userId}
-                onChange={handleChange}
-                disabled
-              />
-            </Grid>
+           
             <Grid item xs={12} md={6}>
               <TextField
                 label="Street Address"
