@@ -19,23 +19,23 @@ const Banner = () => {
             <Button variant="contained" color="secondary" className="custrmr">
               Add Task
             </Button>
-            <Button variant="contained" color="secondary" className='cstmd'>
+            <Button style={{ whiteSpace: 'nowrap' }} variant="contained" color="secondary" className='cstmd'>
               Set Reminders
             </Button>
           </div>
         </div>
         <div className="w-1/3">
           <div >
-          <Link href="/signup" className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          
-          <Image
-              src="/banner.png"
-              alt="Eazy Task Banner"
-              width={700}
-              height={300}
-              className="rounded-lg"
-            />
-          </Link>
+            <Link href="/signup" className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+
+              <Image
+                src="/banner.png"
+                alt="Eazy Task Banner"
+                width={700}
+                height={300}
+                className="rounded-lg hidden md:block"
+              />
+            </Link>
           </div>
 
 

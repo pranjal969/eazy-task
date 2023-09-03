@@ -19,7 +19,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="transform hover:scale-105">
-            <Link href="/add-task" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+            <Link href="/add-task"  style={{ whiteSpace: 'nowrap' }} className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
               Add Task
             </Link>
           </li>
