@@ -15,6 +15,7 @@ const SignupPage = () => {
     address: {
       street: '',
       city: '',
+      pincode:'',
     },
   });
 
@@ -123,7 +124,7 @@ const SignupPage = () => {
               />
             </Grid>
            
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <TextField
                 label="Street Address"
                 name="address.street"
@@ -141,11 +142,20 @@ const SignupPage = () => {
                 onChange={handleChange}
               />
             </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                label="Pincode"
+                name="address.pincode"
+                fullWidth
+                value={formData.address.pincode}
+                onChange={handleChange}
+              />
+            </Grid>
             </Grid>
             <div className="text-center ">
             <button
               type="submit"
-              className="bg-blue-500 mt-10 mb-10 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              className="bg-blue-500 mt-5 mb-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
             >
               Sign Up
             </button>
