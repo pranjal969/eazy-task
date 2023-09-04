@@ -33,11 +33,11 @@ const Navbar = () => {
               Profile
             </Link>
           </li>
-          <li className="transform hover:scale-105">
+          {/* <li className="transform hover:scale-105">
             <Link href="#" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
               Logout
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

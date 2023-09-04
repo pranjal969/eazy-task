@@ -63,7 +63,7 @@ const SignupPage = () => {
     <div className='fluid-container bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]'>
 
       <div className="flex justify-center items-center ">
-        <form onSubmit={handleSubmit} className="w-full max-w-4xl mt-5 p-4 pb-15  rounded shadow-md bg-[#e5e9f1] mb-4 ">
+        <form onSubmit={handleSubmit} className="w-full max-w-4xl mt-5 p-4 pb-15 ml-2 mr-2  rounded shadow-md bg-[#e5e9f1] mb-4 ">
           <div className='flex justify-center mb-2' >
             <img style={{ borderRadius: '50%' }}
               src="/signup.svg" width={"100px"} height={"100px"} alt="" />
