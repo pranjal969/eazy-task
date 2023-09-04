@@ -54,14 +54,14 @@ const LoginPage = () => {
 
           <Grid container spacing={2}>
             <Grid item xs={12} >
-              <TextField
+              <TextField 
+                variant="outlined"
                 label="Email"
                 name="email"
                 type='email'
                 fullWidth
                 value={formData.email}
                 onChange={handleChange}
-                autoComplete="off"
                 required
               />
             </Grid>

@@ -1,14 +1,14 @@
 import { connectDb } from "@/helper/db";
 import { User } from "@/models/user";
 import { NextResponse } from "next/server"
-
+import bcrypt from "bcrypt"
 connectDb();
 //API for getting all users
-export const GET =async (request) => {
+export const GET = async (request) => {
 
     let getAllUsers = [];
     try {
-     getAllUsers=await User.find().select("-password");
+        getAllUsers = await User.find().select("-password");
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Error getting user", status: "False" }, { status: 200 });
@@ -19,14 +19,23 @@ export const GET =async (request) => {
 
 // Api for posting user 
 export const POST = async (request) => {
+    const saltRounds = parseInt(process.env.SALT_ROUNDS);
+    const salt = process.env.PASSWORD_SALT; 
     try {
         // fetch user details from request
-        const { name, email, password, about, profileUrl, address } =await request.json();
-        //create user object with user model
+        const { name, email, password, about, profileUrl, address } = await request.json();
+
+        // Combine the custom salt with the password
+        const saltedPassword = `${salt}${password}`;
+
+        // Hash the salted password using bcrypt
+        const hashedPassword = await bcrypt.hash(saltedPassword, saltRounds);
+
+        // Create user object with hashed password
         const user = new User({
             name,
             email,
-            password,
+            password: hashedPassword, // Use the hashed password
             about,
             profileUrl,
             address: {
@@ -34,10 +43,13 @@ export const POST = async (request) => {
                 city: address.city || "",
                 pincode: address.pincode || 0
             }
-        })
+        });
+
         const createdUser = await user.save();
-        console.log("User is created")
-        return NextResponse.json(createdUser, { status: 201, statusText: "createdUser" });
+        console.log("User is created");
+        const userWithoutPassword = { ...createdUser.toObject() };
+        delete userWithoutPassword.password;
+        return NextResponse.json(userWithoutPassword, { status: 201, statusText: "createdUser" });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Error creating user", status: "False" }, { status: 400 });
