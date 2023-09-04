@@ -1,0 +1,97 @@
+'use client'
+import React, { useState } from 'react';
+import { addUser } from '@/services/userService';
+import { toast } from 'react-toastify';
+import { Grid, TextField } from '@mui/material';
+
+const initialFormData = {
+  email: '',
+  password: '',
+};
+
+const LoginPage = () => {
+  const [formData, setFormData] = useState(initialFormData);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Handle form submission here
+    try {
+      console.log('Form submitted with login data:', formData);
+    //  const result = await addUser(formData);
+      toast.success("Login Successfull", {
+        position: 'top-left',
+        autoClose: 3000,
+      });
+      setFormData(initialFormData);
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid credentials", {
+        position: 'top-left',
+        autoClose: 3000,
+      });
+    }
+  };
+
+  return (
+    <div className='fluid-container bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]'>
+
+      <div className="flex justify-center items-center ">
+        <form onSubmit={handleSubmit} className="w-full max-w-lg mt-16 mb-16 p-16 pb-15 ml-2 mr-2  rounded shadow-md bg-[#e5e9f1] ">
+          <div className='flex justify-center mb-2' >
+            <img style={{ borderRadius: '50%' }}
+              src="/signup.svg" width={"100px"} height={"100px"} alt="" />
+          </div>
+
+          <h2 className="text-2xl font-semibold mb-2  flex justify-center">Login</h2>
+
+          <Grid container spacing={2}>
+            <Grid item xs={12} >
+              <TextField
+                label="Email"
+                name="email"
+                type='email'
+                fullWidth
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="off"
+                required
+              />
+            </Grid>
+            <Grid item xs={12} >
+              <TextField
+                label="Password"
+                name="password"
+                type="password"
+                fullWidth
+                value={formData.password}
+                onChange={handleChange}
+                autoComplete='off'
+                required
+              />
+            </Grid>
+          </Grid>
+          <div className="text-center ">
+            <button
+              type="submit"
+              className="bg-blue-500 mt-5 mb-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+
+
+};
+
+export default LoginPage;

@@ -1,23 +1,24 @@
 'use client'
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { addUser } from '@/services/userService';
 import { toast } from 'react-toastify';
-import { Grid, TextField, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
+
+const initialFormData = {
+  name: '',
+  email: '',
+  password: '',
+  about: '',
+  profileUrl: '',
+  address: {
+    street: '',
+    city: '',
+    pincode: '',
+  },
+};
 
 const SignupPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    about: '',
-    profileUrl: '',
-    address: {
-      street: '',
-      city: '',
-      pincode:'',
-    },
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,6 +51,7 @@ const SignupPage = () => {
         position: 'top-left',
         autoClose: 3000,
       });
+      setFormData(initialFormData);
     } catch (error) {
       console.log(error);
       toast.error("Error creating user", {
@@ -86,6 +88,7 @@ const SignupPage = () => {
               <TextField
                 label="Email"
                 name="email"
+                type='email'
                 fullWidth
                 value={formData.email}
                 onChange={handleChange}
@@ -123,7 +126,7 @@ const SignupPage = () => {
                 onChange={handleChange}
               />
             </Grid>
-           
+
             <Grid item xs={12}>
               <TextField
                 label="Street Address"
@@ -151,8 +154,8 @@ const SignupPage = () => {
                 onChange={handleChange}
               />
             </Grid>
-            </Grid>
-            <div className="text-center ">
+          </Grid>
+          <div className="text-center ">
             <button
               type="submit"
               className="bg-blue-500 mt-5 mb-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"

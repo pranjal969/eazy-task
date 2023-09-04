@@ -3,8 +3,14 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Banner = () => {
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push('/signup');
+  };
   return (
     <div className="bg-gradient-to-r from-[#a5b4fc] via-[#ee634a] to-[#a5b4fc] py-12 shadow-xl">
       <div className="container mx-auto px-4 flex items-center justify-between">
@@ -16,10 +22,12 @@ const Banner = () => {
             Keep track of your tasks, set due dates, and receive reminders.
           </p>
           <div className="mt-8">
-            <Button variant="contained" color="secondary" className="custrmr">
+            <Button onClick={handleButtonClick}
+              variant="contained" color="secondary" className="custrmr">
               Add Task
             </Button>
-            <Button style={{ whiteSpace: 'nowrap' }} variant="contained" color="secondary" className='cstmd'>
+            <Button onClick={handleButtonClick}
+              style={{ whiteSpace: 'nowrap' }} variant="contained" color="secondary" className='cstmd'>
               Set Reminders
             </Button>
           </div>

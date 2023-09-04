@@ -83,9 +83,9 @@ const AddTaskPage = () => {
                   value={formData.status}
                   onChange={handleChange}
                 >
-                    <MenuItem value="Select Status" disabled>Select Status</MenuItem>
-                    <MenuItem value="Completed">Completed</MenuItem>
-                    <MenuItem value="Pending">Pending</MenuItem>
+                  <MenuItem value="Select Status" disabled>Select Status</MenuItem>
+                  <MenuItem value="Completed">Completed</MenuItem>
+                  <MenuItem value="Pending">Pending</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

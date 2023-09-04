@@ -19,13 +19,18 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="transform hover:scale-105">
-            <Link href="/add-task"  style={{ whiteSpace: 'nowrap' }} className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+            <Link href="/add-task" style={{ whiteSpace: 'nowrap' }} className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
               Add Task
             </Link>
           </li>
-          <li className="transform hover:scale-105">
+          {/* <li className="transform hover:scale-105">
             <Link href="/signup" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
               Signup
+            </Link>
+          </li> */}
+          <li className="transform hover:scale-105">
+            <Link href="/login" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+              Login
             </Link>
           </li>
           <li className="transform hover:scale-105">
@@ -33,11 +38,6 @@ const Navbar = () => {
               Profile
             </Link>
           </li>
-          {/* <li className="transform hover:scale-105">
-            <Link href="#" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-              Logout
-            </Link>
-          </li> */}
         </ul>
       </div>
     </nav>
