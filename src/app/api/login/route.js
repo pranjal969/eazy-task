@@ -2,7 +2,7 @@ import { connectDb } from "@/helper/db";
 import { User } from "@/models/user";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken"; 
+import jwt from "jsonwebtoken";
 
 connectDb();
 
@@ -21,8 +21,6 @@ export const POST = async (request) => {
         });
         // Combine the custom salt with the password
         const saltedPassword = `${salt}${password}`;
-        // Hash the salted password using bcrypt
-        const hashedPassword = await bcrypt.hash(saltedPassword, saltRounds);
         if (user) {
             const matchedPassword = bcrypt.compareSync(saltedPassword, user.password);
             if (!matchedPassword) {
@@ -33,15 +31,19 @@ export const POST = async (request) => {
             const token = jwt.sign(
                 {
                     userId: user._id,
-                    name:user.name, 
-                    email:user.email, // Include any user-related data you need
+                    name: user.name,
+                    email: user.email, // Include any user-related data you need
                 },
                 jwtSecret,
                 { expiresIn: '1h' } // Set an expiration time for the token
             );
-
+            const response = NextResponse.json({ message: "Login success !!", success: true }, { status: 200, statusText: "ok" })
+            response.cookies.set("authtoken", token, {
+                httpOnly: true,
+                maxAge: 3600, 
+            })
             // Send the JWT token in the response
-            return NextResponse.json({token}, { status: 200, statusText: "ok" });
+            return response;
         } else {
             throw new Error("User Not Found");
         }
