@@ -38,7 +38,7 @@ export const POST = async (request) => {
                 { expiresIn: '1h' } // Set an expiration time for the token
             );
             const response = NextResponse.json({ message: "Login success !!", success: true }, { status: 200, statusText: "ok" })
-            response.cookies.set("authtoken", token, {
+            response.cookies.set("authToken", token, {
                 httpOnly: true,
                 maxAge: 3600, 
             })

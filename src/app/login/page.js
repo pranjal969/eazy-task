@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import { addUser } from '@/services/userService';
+import { addUser, loginApi } from '@/services/userService';
 import { toast } from 'react-toastify';
 import { Grid, TextField } from '@mui/material';
 
@@ -14,28 +14,29 @@ const LoginPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
     try {
       console.log('Form submitted with login data:', formData);
-    //  const result = await addUser(formData);
-      toast.success("Login Successfull", {
+      const result = await loginApi(formData);
+      toast.success(result.message, {
         position: 'top-left',
-        autoClose: 3000,
+        autoClose: 2000,
       });
-      setFormData(initialFormData);
+      console.log('After Login api runs:', result);
+      //  setFormData(initialFormData);
     } catch (error) {
       console.log(error);
-      toast.error("Invalid credentials", {
+      toast.error(error.response.data.message, {
         position: 'top-left',
-        autoClose: 3000,
+        autoClose: 2000,
       });
     }
   };
@@ -54,7 +55,7 @@ const LoginPage = () => {
 
           <Grid container spacing={2}>
             <Grid item xs={12} >
-              <TextField 
+              <TextField
                 variant="outlined"
                 label="Email"
                 name="email"
