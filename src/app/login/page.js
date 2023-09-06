@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { addUser, loginApi } from '@/services/userService';
 import { toast } from 'react-toastify';
 import { Grid, TextField } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 const initialFormData = {
   email: '',
@@ -11,7 +12,7 @@ const initialFormData = {
 
 const LoginPage = () => {
   const [formData, setFormData] = useState(initialFormData);
-
+  const router = useRouter();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -32,6 +33,8 @@ const LoginPage = () => {
       });
       console.log('After Login api runs:', result);
       //  setFormData(initialFormData);
+      router.push('/profile');
+
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message, {

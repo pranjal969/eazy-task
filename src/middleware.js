@@ -1,11 +1,14 @@
 import { NextResponse } from 'next/server'
- 
-// This function can be marked `async` if using `await` inside
-export function middleware(request) {
+
+
+export async function middleware(request) {
+
+  const authToken = await request.cookies.get("authToken")?.value;
+  console.log(authToken);
   return NextResponse.redirect(new URL('/', request.url))
 }
- 
-// See "Matching Paths" below to learn more
+
+// See "Matching Paths" 
 export const config = {
-    matcher: ['/api/:path*', '/login'],
+  matcher: ['/signup', '/login', '/add-task',],
 }
