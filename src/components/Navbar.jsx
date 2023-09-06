@@ -1,7 +1,13 @@
+'use client'
+
+import UserContext from '@/context/userContext';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 
 const Navbar = () => {
+  const contextUser = useContext(UserContext);
+  const userData = contextUser.user.user;
+  console.log("This is inside header ---> ", userData?.name);
   return (
     <nav className="bg-gradient-to-r from-[#a5b4fc] via-[#2c44bb] to-[#e77561] p-1 sticky top-0 z-50">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
@@ -13,31 +19,45 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <ul className="navbar-nav flex space-x-2 md:space-x-2 mt-2 md:mt-0 md:flex-row">
-          <li className="transform hover:scale-105">
-            <Link href="/" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-              Home
-            </Link>
-          </li>
-          <li className="transform hover:scale-105">
-            <Link href="/add-task" style={{ whiteSpace: 'nowrap' }} className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-              Add Task
-            </Link>
-          </li>
-          {/* <li className="transform hover:scale-105">
-            <Link href="/signup" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-              Signup
-            </Link>
-          </li> */}
-          <li className="transform hover:scale-105">
-            <Link href="/login" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-              Login
-            </Link>
-          </li>
-          <li className="transform hover:scale-105">
-            <Link href="/profile" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-              Profile
-            </Link>
-          </li>
+          {userData && (
+            <>
+              <li className="transform hover:scale-105">
+                <Link href="/" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  Home
+                </Link>
+              </li>
+              <li className="transform hover:scale-105">
+                <Link href="/add-task" style={{ whiteSpace: 'nowrap' }} className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  Add Task
+                </Link>
+              </li>
+              <li className="transform hover:scale-105">
+                <Link href="/profile" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  Profile
+                </Link>
+              </li>
+              <li className="transform hover:scale-105">
+                <Link href="#" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  Logout
+                </Link>
+              </li>
+            </>
+          )}
+          {!userData && (
+            <>
+              <li className="transform hover:scale-105">
+                <Link href="/login" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  Login
+                </Link>
+              </li>
+              <li className="transform hover:scale-105">
+                <Link href="/signup" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  Signup
+                </Link>
+              </li>
+
+            </>
+          )}
         </ul>
       </div>
     </nav>

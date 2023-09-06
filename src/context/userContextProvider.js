@@ -9,9 +9,9 @@ const UserContextProvider = ({ children }) => {
     useEffect(() => {
         async function getdecodedToken() {
             try {
-                const user = await getCurrentUser();
-                setUser({ ...user });
-                console.log(user);
+                const userDetails = await getCurrentUser();
+                setUser({ ...userDetails });
+ 
             } catch (error) {
                 console.log(error);
                 toast.error("Error validating token")
