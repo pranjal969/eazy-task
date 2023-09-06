@@ -11,3 +11,9 @@ export const loginApi = async (loginData) => {
     const result = await httpAxios.post("login", loginData).then((response) => response.data);
     return result;
 }
+
+//get current user
+export const getCurrentUser = async () => {
+    const result = await httpAxios.get("current").then((response) => response.data);
+    return result;
+}
