@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import UserContext from '@/context/userContext';
 import { viewTaskByUserId } from '@/services/taskService';
 import { toast } from 'react-toastify';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const Page = () => {
   const contextUser = useContext(UserContext);
@@ -44,7 +45,12 @@ const Page = () => {
               : "bg-gradient-to-r from-[#a5b4fc] via-[#d36174] to-[#f05236]"
           } shadow-md rounded-md p-4 mx-6 my-6`}>
 
-            <div className="font-bold text-lg">{task.title}</div>
+          <div className='flex justify-between'>
+          <div className="font-bold text-lg">{task.title}</div>
+            <span className='bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-slate-400'>
+            <AiOutlineClose />
+            </span>
+            </div>
             <div className="text-gray-600 font-semibold">{task.description}</div>
             <div className="mt-2">
               <span className="font-semibold">Status: </span>
