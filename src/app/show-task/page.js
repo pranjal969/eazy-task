@@ -34,11 +34,15 @@ const Page = () => {
   }, [userData]);
 
   return (
-    <div className='bg-[#e4e5e9]  min-h-screen'>
+    <div className='bg-[#b4b9cf]  min-h-screen'>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
         {tasks.map((task) => (
-          <div key={task._id} className="bg-gradient-to-r from-[#a5b4fc] via-[#aeb4cf] to-[#e77561] shadow-md rounded-md p-4 mx-6 my-6">
+          <div key={task._id} className={`${
+            task.status === "Completed"
+              ? "bg-gradient-to-r from-[#a5b4fc] via-[#8dbd83] to-[#0ebe51]"
+              : "bg-gradient-to-r from-[#a5b4fc] via-[#d36174] to-[#f05236]"
+          } shadow-md rounded-md p-4 mx-6 my-6`}>
 
             <div className="font-bold text-lg">{task.title}</div>
             <div className="text-gray-600 font-semibold">{task.description}</div>

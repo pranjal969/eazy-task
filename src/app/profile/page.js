@@ -46,9 +46,9 @@ const ProfilePage = () => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
-
+  
   return (
-    <div className="bg-gradient-to-r from-[#a5b4fc] via-[#2c44bb] to-[#e77561] min-h-screen flex flex-col justify-center items-center p-4">
+    <div className="bg-gradient-to-r from-[#e77561] via-[#2c44bb] to-[#a5b4fc] min-h-screen flex flex-col justify-center items-center p-4">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <div className="text-center mb-4">
           <img
