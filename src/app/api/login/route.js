@@ -48,7 +48,6 @@ export const POST = async (request) => {
             throw new Error("User Not Found");
         }
     } catch (error) {
-        console.log(error);
         return NextResponse.json({ message: error.message, status: "False" }, { status: 400 });
     }
 };

@@ -12,9 +12,8 @@ export const getdecodedToken = async () => {
         
         return { ...userDetails };
     } catch (error) {
-        console.log(error);
         // Handle the error here or throw it to be caught by the calling component
-        throw error;
+        
     }
 }
 
@@ -26,7 +25,6 @@ const UserContextProvider = ({ children }) => {
                 const {user} = await getdecodedToken();
                 setUser({ ...user });
             } catch (error) {
-                console.log(error);
                 // Handle the error here
             }
         }

@@ -30,7 +30,6 @@ const LoginPage = () => {
       const {user}  = await getdecodedToken(); // Assuming getdecodedToken is in scope
       context.setUser(user);
     } catch (error) {
-      console.log(error);
       // Handle the error here
     }
   };
@@ -40,23 +39,19 @@ const LoginPage = () => {
     e.preventDefault();
     // Handle form submission here
     try {
-      console.log('Form submitted with login data:', formData);
       const result = await loginApi(formData);
       //const rem =  context.setUser(result.user);
       
      await callGetdecodedToken();
-      console.log(context)
       router.push('/show-task');
       toast.success(result.message, {
         position: 'top-left',
         autoClose: 2000,
       });
-      console.log('After Login api runs:', result);
       //  setFormData(initialFormData);
 
 
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message, {
         position: 'top-left',
         autoClose: 2000,

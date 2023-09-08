@@ -36,7 +36,6 @@ export async function middleware(request) {
         break;
     }
   } catch (error) {
-    console.log(error);
 
   }
 }

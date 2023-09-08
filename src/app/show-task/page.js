@@ -19,9 +19,7 @@ const Page = () => {
       try {
         const result = await viewTaskByUserId(userData?.userId);
         setTasks(result);
-        console.log(result);
       } catch (error) {
-        console.log(error);
         toast.error("Error getting task", {
           position: 'top-left',
           autoClose: 3000,

@@ -12,7 +12,6 @@ const ProfilePage = () => {
 
   useEffect(() => {
     setUserData(contextUser.user);
-    console.log("first", contextUser);
   }, [contextUser.user]);
 
   const handleEditClick = () => {
@@ -20,21 +19,14 @@ const ProfilePage = () => {
   };
 
   const handleSaveClick = async () => {
-    // Assuming you have a function to save the edited user data
-    // Replace this with your actual save logic
     try {
-      // Save the edited userData here
-      // Example: saveUserData(userData);
-      console.log(userData);
-      const updatedUser = await updateUser({ name: userData?.name, email: userData?.email }, userData?.userId)
-      console.log("profile after updating ", updatedUser)
+      const updatedUser = await updateUser({ name: userData?.name, email: userData?.email }, userData?.userId);
       toast.success("Profile saved successfully", {
         position: 'top-left',
         autoClose: 3000,
       });
       setIsEditing(false);
     } catch (error) {
-      console.error(error);
       toast.error("Error saving profile", {
         position: 'top-left',
         autoClose: 3000,

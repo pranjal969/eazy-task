@@ -6,11 +6,7 @@ export const connectDb = async () => {
             dbName: 'eazy_task',
         });
 
-        console.log("DB connect");
-        // console.log(connection);
 
     } catch (error) {
-        console.log("DB connection failed");
-        console.log(error);
     }
 }

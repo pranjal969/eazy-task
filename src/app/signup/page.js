@@ -44,16 +44,13 @@ const SignupPage = () => {
     e.preventDefault();
     // Handle form submission here
     try {
-      console.log('Form submitted with data:', formData);
       const result = await addUser(formData);
-      console.log(result);
       toast.success("Signup Successfull", {
         position: 'top-left',
         autoClose: 3000,
       });
       setFormData(initialFormData);
     } catch (error) {
-      console.log(error);
       toast.error("Error creating user", {
         position: 'top-left',
         autoClose: 3000,

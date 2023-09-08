@@ -12,7 +12,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setUserData(contextUser.user);
-    console.log("first", contextUser);
   }, [contextUser.user]);
 
   
@@ -22,7 +21,6 @@ const Navbar = () => {
     e.preventDefault();
     try {
       const result = await logoutApi();
-      console.log(result)
       contextUser.setUser(undefined);
       router.push("/login")
       toast.success("Logout Success", {
@@ -32,8 +30,6 @@ const Navbar = () => {
 
     } catch (error) {
       const temp = await contextUser.setUser(undefined);
-      console.log(temp);
-      console.log(error);
       toast.error("Error in logout !!", {
         position: 'top-left',
         autoClose: 2000,

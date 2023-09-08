@@ -8,7 +8,6 @@ function userContextHelper() {
 
   useEffect(() => {
     setUserData(contextUser.user);
-    console.log("first", contextUser);
   }, [contextUser.user]);
 
   return userData?.user;

@@ -45,7 +45,6 @@ export const PUT = async (request, { params }) => {
         }
 
     } catch (error) {
-        console.log(error)
         return NextResponse.json({ message: "Error updating work ", status: "False" }, { status: 200 });
     }
 

@@ -24,7 +24,6 @@ const AddTaskPage = () => {
 
   useEffect(() => {
     setUserData(contextUser.user);
-    console.log("first", contextUser);
   }, [contextUser.user]);
 
 
@@ -41,7 +40,6 @@ const AddTaskPage = () => {
     // Handle form submission here
     // Add validations over here
 
-    console.log("This is the sece of userdata ", contextUser);
     try {
      formData.userId=userData.userId;
       const result = await addTask(formData);

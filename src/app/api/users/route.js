@@ -10,7 +10,6 @@ export const GET = async (request) => {
     try {
         getAllUsers = await User.find().select("-password");
     } catch (error) {
-        console.log(error);
         return NextResponse.json({ message: "Error getting user", status: "False" }, { status: 200 });
     }
     return NextResponse.json(getAllUsers);
@@ -46,12 +45,10 @@ export const POST = async (request) => {
         });
 
         const createdUser = await user.save();
-        console.log("User is created");
         const userWithoutPassword = { ...createdUser.toObject() };
         delete userWithoutPassword.password;
         return NextResponse.json(userWithoutPassword, { status: 201, statusText: "createdUser" });
     } catch (error) {
-        console.log(error);
         return NextResponse.json({ message: "Error creating user", status: "False" }, { status: 400 });
     }
 }
