@@ -80,6 +80,7 @@ const LoginPage = () => {
                 fullWidth
                 value={formData.email}
                 onChange={handleChange}
+                autoComplete='true'
                 InputLabelProps={{ shrink: true }}  
                 required
               />
@@ -89,6 +90,7 @@ const LoginPage = () => {
                 label="Password"
                 name="password"
                 type="password"
+                autoComplete='true'
                 fullWidth
                 value={formData.password}
                 onChange={handleChange}
