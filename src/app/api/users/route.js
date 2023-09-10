@@ -2,12 +2,13 @@ import { connectDb } from "@/helper/db";
 import { User } from "@/models/user";
 import { NextResponse } from "next/server"
 import bcrypt from "bcrypt"
-connectDb();
+
 //API for getting all users
 export const GET = async (request) => {
 
     let getAllUsers = [];
     try {
+        await connectDb();
         getAllUsers = await User.find().select("-password");
     } catch (error) {
         return NextResponse.json({ message: "Error getting user", status: "False" }, { status: 200 });
@@ -21,6 +22,7 @@ export const POST = async (request) => {
     const saltRounds = parseInt(process.env.SALT_ROUNDS);
     const salt = process.env.PASSWORD_SALT; 
     try {
+        await connectDb();
         // fetch user details from request
         const { name, email, password, about, profileUrl, address } = await request.json();
 

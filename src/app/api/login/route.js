@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-connectDb();
+
 
 // Secret key for JWT
 const jwtSecret = process.env.JWT_SECRET;
@@ -14,6 +14,7 @@ export const POST = async (request) => {
     const saltRounds = parseInt(process.env.SALT_ROUNDS);
     const salt = process.env.PASSWORD_SALT;
     try {
+        await connectDb();
         // fetch user details from request
         const { email, password } = await request.json();
         const user = await User.findOne({

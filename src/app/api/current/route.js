@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { connectDb } from "@/helper/db";
 
-connectDb();
+
 const jwtSecret = process.env.JWT_SECRET; // Load your JWT secret from environment variables
 
 export const GET = async (request) => {
     try {
+        await connectDb();
         const authToken = request.cookies.get("authToken")?.value;
 
         if (!authToken) {

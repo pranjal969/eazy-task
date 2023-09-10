@@ -1,7 +1,7 @@
 import { connectDb } from "@/helper/db";
 import { Work } from "@/models/work";
 import { NextResponse } from "next/server";
-connectDb();
+
 
 //Api for get work by id
 
@@ -10,6 +10,7 @@ export const GET = async (request, { params }) => {
     const { workId } = await params;
 
     try {
+        await connectDb();
         const work = await Work.findById(workId);
         return NextResponse.json(work || { message: "Work not found", status: "False" });
     } catch (error) {
@@ -24,6 +25,7 @@ export const PUT = async (request, { params }) => {
     const { workId } = await params;
 
     try {
+        await connectDb();
         //Get the work details from db
         const work = await Work.findById(workId);
         if (work) {
@@ -56,6 +58,7 @@ export const DELETE = async (request, { params }) => {
     const { workId } = await params;
 
     try {
+        await connectDb();
         const work = await Work.deleteOne({ _id: workId });
         return NextResponse.json({ message: "Work Deleted successfully", status: "True" }, { status: 200 });
     } catch (error) {

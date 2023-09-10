@@ -2,13 +2,14 @@ import { connectDb } from "@/helper/db";
 import { Work } from "@/models/work";
 import { NextResponse } from "next/server";
 
-connectDb();//Api for get all work of user by userId
+
 //api/users/userId/work
 export const GET = async (request, { params }) => {
 
     const { userId } = await params;
 
     try {
+        await connectDb();
         const work = await  Work.find({
             userId:userId
         });

@@ -3,12 +3,13 @@ import { Work } from "@/models/work";
 
 import { NextResponse } from "next/server"
 
-connectDb();
+
 //API for getting all works
 export const GET =async (request) => {
 
     let getAllWorks = [];
     try {
+        await connectDb();
         getAllWorks=await Work.find();
     } catch (error) {
         return NextResponse.json({ message: "Error getting works", status: "False" }, { status: 200 });
@@ -20,6 +21,7 @@ export const GET =async (request) => {
 // Api for posting works 
 export const POST = async (request) => {
     try {
+        await connectDb();
         // fetch user details from request
         const { title, description, status, author, category,userId } =await request.json();
         //create user object with user model
