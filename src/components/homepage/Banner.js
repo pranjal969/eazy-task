@@ -9,7 +9,7 @@ const Banner = () => {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push('/signup');
+    router.push('/add-task');
   };
   return (
     <div className="bg-gradient-to-r from-[#a5b4fc] via-[#ee634a] to-[#a5b4fc] py-12 shadow-xl">
@@ -34,7 +34,7 @@ const Banner = () => {
         </div>
         <div className="w-1/3">
           <div >
-            <Link href="/signup" className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <Link href="/add-task" className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
 
               <Image
                 src="/banner.png"

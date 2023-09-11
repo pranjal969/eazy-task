@@ -4,6 +4,7 @@ import UserContext from '@/context/userContext';
 import { viewTaskByUserId } from '@/services/taskService';
 import { toast } from 'react-toastify';
 import { AiOutlineClose } from 'react-icons/ai';
+import NoTasksMessage from '@/components/NoTasksMessage';
 
 const Page = () => {
   const contextUser = useContext(UserContext);
@@ -35,36 +36,39 @@ const Page = () => {
   return (
     <div className='bg-[#b4b9cf]  min-h-screen'>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
-        {tasks.map((task) => (
-          <div key={task._id} className={`${
-            task.status === "Completed"
-              ? "bg-gradient-to-r from-[#a5b4fc] via-[#8dbd83] to-[#0ebe51]"
-              : "bg-gradient-to-r from-[#a5b4fc] via-[#d36174] to-[#f05236]"
-          } shadow-md rounded-md p-4 mx-6 my-6`}>
+      {
+        tasks.length === 0 ? (<div className='mx-40 pt-40'> <NoTasksMessage /> </div>) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
+            {tasks.map((task) => (
+              <div key={task._id} className={`${task.status === "Completed"
+                  ? "bg-gradient-to-r from-[#a5b4fc] via-[#8dbd83] to-[#0ebe51]"
+                  : "bg-gradient-to-r from-[#a5b4fc] via-[#d36174] to-[#f05236]"
+                } shadow-md rounded-md p-4 mx-6 my-6`}>
 
-          <div className='flex justify-between'>
-          <div className="font-bold text-lg">{task.title}</div>
-            <span className='bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-slate-400'>
-            <AiOutlineClose />
-            </span>
-            </div>
-            <div className="text-gray-600 font-semibold">{task.description}</div>
-            <div className="mt-2">
-              <span className="font-semibold">Status: </span>
-              {task.status}
-            </div>
-            <div className="mt-2">
-              <span className="font-semibold">Author: </span>
-              {task.author}
-            </div>
-            <div className="mt-2">
-              <span className="font-semibold">Category: </span>
-              {task.category}
-            </div>
+                <div className='flex justify-between'>
+                  <div className="font-bold text-lg">{task.title}</div>
+                  <span className='bg-gray-200 rounded-full w-5 h-5 flex items-center justify-center cursor-pointer hover:bg-slate-400'>
+                    <AiOutlineClose />
+                  </span>
+                </div>
+                <div className="text-gray-600 font-semibold">{task.description}</div>
+                <div className="mt-2">
+                  <span className="font-semibold">Status: </span>
+                  {task.status}
+                </div>
+                <div className="mt-2">
+                  <span className="font-semibold">Author: </span>
+                  {task.author}
+                </div>
+                <div className="mt-2">
+                  <span className="font-semibold">Category: </span>
+                  {task.category}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        )
+      }
     </div>
   );
 };
