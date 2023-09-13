@@ -58,7 +58,7 @@ const Page = () => {
     <div className='bg-[#b4b9cf]  min-h-screen'>
 
       {
-        tasks.length === 0 ? (<div className='mx-40 pt-40'> <NoTasksMessage /> </div>) : (
+        tasks.length === 0 ? (<div className='  '> <NoTasksMessage /> </div>) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
             {tasks.map((task) => (
               <div key={task._id} className={`${task.status === "Completed"
