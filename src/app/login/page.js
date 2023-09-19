@@ -1,9 +1,10 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { addUser, loginApi } from '@/services/userService';
 import { toast } from 'react-toastify';
 import { Grid, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import UserContext from '@/context/userContext';
 
 const initialFormData = {
   email: '',
@@ -12,6 +13,7 @@ const initialFormData = {
 
 const LoginPage = () => {
   const [formData, setFormData] = useState(initialFormData);
+  const context = useContext(UserContext);
   const router = useRouter();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,13 +29,17 @@ const LoginPage = () => {
     try {
       console.log('Form submitted with login data:', formData);
       const result = await loginApi(formData);
+    const rem=await  context.setUser(result.user);
+      console.log(rem)
+
+      router.push('/profile');
       toast.success(result.message, {
         position: 'top-left',
         autoClose: 2000,
       });
       console.log('After Login api runs:', result);
       //  setFormData(initialFormData);
-      router.push('/profile');
+
 
     } catch (error) {
       console.log(error);

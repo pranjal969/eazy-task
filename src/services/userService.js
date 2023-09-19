@@ -17,3 +17,9 @@ export const getCurrentUser = async () => {
     const result = await httpAxios.get("current").then((response) => response.data);
     return result;
 }
+
+//Logout Api "logout" is the endpoint
+export const logoutApi = async () => {
+    const result = await httpAxios.post("logout").then((response) => response.data);
+    return result;
+}

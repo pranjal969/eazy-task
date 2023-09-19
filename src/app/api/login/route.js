@@ -37,7 +37,7 @@ export const POST = async (request) => {
                 jwtSecret,
                 { expiresIn: '1h' } // Set an expiration time for the token
             );
-            const response = NextResponse.json({ message: "Login success !!", success: true }, { status: 200, statusText: "ok" })
+            const response = NextResponse.json({ message: "Login success !!",user:user, success: true }, { status: 200, statusText: "ok" })
             response.cookies.set("authToken", token, {
                 httpOnly: true,
                 maxAge: 3600, 

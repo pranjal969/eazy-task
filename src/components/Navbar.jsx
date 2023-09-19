@@ -1,12 +1,37 @@
 'use client'
 
 import UserContext from '@/context/userContext';
+import { logoutApi } from '@/services/userService';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const contextUser = useContext(UserContext);
-  const userData = contextUser.user.user;
+  const userData = contextUser.user?.user;
+  const router = useRouter();
+  const logout = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await logoutApi();
+      console.log(result)
+      router.push("/login");
+      toast.success("Logout Success", {
+        position: 'top-left',
+        autoClose: 2000,
+      });
+
+    } catch (error) {
+      const temp = await contextUser.setUser(undefined);
+      console.log(temp);
+      console.log(error);
+      toast.error("Error in logout !!", {
+        position: 'top-left',
+        autoClose: 2000,
+      })
+    }
+  }
   console.log("This is inside header ---> ", userData?.name);
   return (
     <nav className="bg-gradient-to-r from-[#a5b4fc] via-[#2c44bb] to-[#e77561] p-1 sticky top-0 z-50">
@@ -36,10 +61,10 @@ const Navbar = () => {
                   Profile
                 </Link>
               </li>
-              <li className="transform hover:scale-105">
-                <Link href="#" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+              <li className="transform hover:scale-105 ">
+                <button onClick={logout} className="text-white text-md pb-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
                   Logout
-                </Link>
+                </button>
               </li>
             </>
           )}
