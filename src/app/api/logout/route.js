@@ -14,9 +14,9 @@ export const POST = async (request) => {
         message: "Logout Successfull !!",
         status: true
     });
-    response.cookies.set("authToken", "", {
-        httpOnly: true,
-        maxAge: 0,
-    })
+ response.cookies.set("authToken", "", {
+    httpOnly: true,
+    maxAge: 0,
+})
     return response;
 };

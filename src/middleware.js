@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 
 export async function middleware(request) {
+ try {
   const authToken = await request.cookies.get("authToken")?.value;
   const path = await request.nextUrl.pathname;
   const accessAfterLoginUrls = ['/add-task', '/profile'];
-  const NoAccessAfterLoginUrls = ['/signup', '/login'];
+  const NoAccessAfterLoginUrls = ['/signup', '/login','/'];
   switch (true) {
     case path.startsWith('/api'):
       if (!authToken) {
@@ -34,8 +35,12 @@ export async function middleware(request) {
     default:
       break;
   }
+ } catch (error) {
+  console.log(error);
+  
+ }
 }
 
 export const config = {
-  matcher: ['/signup', '/login', '/profile', '/add-task', '/api/users/:path*', ],
+  matcher: ['/','/signup', '/login', '/profile', '/add-task', '/api/users/:path*','/api/work/:path*' ],
 };

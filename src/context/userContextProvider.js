@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { getCurrentUser } from '@/services/userService';
 
 const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     useEffect(() => {
         async function getdecodedToken() {
             try {
@@ -14,7 +14,7 @@ const UserContextProvider = ({ children }) => {
  
             } catch (error) {
                 console.log(error);
-                toast.error("Error validating token")
+               // toast.error("Error validating token")
             }
         }
         getdecodedToken();

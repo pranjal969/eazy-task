@@ -4,19 +4,28 @@ import UserContext from '@/context/userContext';
 import { logoutApi } from '@/services/userService';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const contextUser = useContext(UserContext);
-  const userData = contextUser.user?.user;
+  const [userData, setUserData] = useState();
   const router = useRouter();
+  useEffect(() => {
+
+    setUserData(contextUser.user);
+    console.log("first", contextUser)
+  }, [contextUser.user])
+
+
+
   const logout = async (e) => {
     e.preventDefault();
     try {
       const result = await logoutApi();
       console.log(result)
-      router.push("/login");
+      contextUser.setUser(undefined);
+      router.push("/login")
       toast.success("Logout Success", {
         position: 'top-left',
         autoClose: 2000,
@@ -32,7 +41,6 @@ const Navbar = () => {
       })
     }
   }
-  console.log("This is inside header ---> ", userData?.name);
   return (
     <nav className="bg-gradient-to-r from-[#a5b4fc] via-[#2c44bb] to-[#e77561] p-1 sticky top-0 z-50">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
@@ -65,6 +73,9 @@ const Navbar = () => {
                 <button onClick={logout} className="text-white text-md pb-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
                   Logout
                 </button>
+              </li>
+              <li>
+                {userData.name}
               </li>
             </>
           )}

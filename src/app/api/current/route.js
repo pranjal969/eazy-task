@@ -13,7 +13,7 @@ export const GET = async (request) => {
 
         return NextResponse.json({ user: decodedToken, message: "Token verified successfully" }, { status: 200 });
     } catch (error) {
-        console.error(error);
+       // console.error(error);
         return NextResponse.json({ message: "Token verification failed", error: error.message }, { status: 401 });
     }
 };
