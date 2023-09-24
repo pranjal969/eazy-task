@@ -1,9 +1,11 @@
 'use client'
 
-import React, { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import UserContext from '@/context/userContext';
 import { TextField, Grid, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { addTask } from '@/services/taskService';
 import { toast } from 'react-toastify';
+
 
 const initialFormData = {
   title: '',
@@ -11,11 +13,20 @@ const initialFormData = {
   status: '',
   author: '',
   category: '',
-  userId: '64e5dd57f067a1cfd91e09c1',
+  userId: '',
 };
+
 
 const AddTaskPage = () => {
   const [formData, setFormData] = useState(initialFormData);
+  const contextUser = useContext(UserContext);
+  const [userData, setUserData] = useState();
+ 
+  useEffect(() => {
+    setUserData(contextUser?.user);
+
+  }, [contextUser.user]);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,14 +42,12 @@ const AddTaskPage = () => {
     // Add validations over here
     try {
       const result = await addTask(formData);
-      console.log(result);
       toast.success("Task added successfully", {
         position: 'top-left',
         autoClose: 3000,
       });
       setFormData(initialFormData);
     } catch (error) {
-      console.log(error);
       toast.error("Error adding task", {
         position: 'top-left',
         autoClose: 3000,
@@ -114,16 +123,18 @@ const AddTaskPage = () => {
                 label="User ID"
                 name="userId"
                 fullWidth
-                value={formData.userId}
+                value={userData?._id || ' '}
                 onChange={handleChange}
                 margin="normal"
                 disabled
+                InputLabelProps={{ shrink: true }}
               />
             </Grid>
           </Grid>
           <div className="text-center ">
             <button
               type="submit"
+              disabled={!(userData?._id)}
               className="bg-blue-500 mt-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
             >
               Add task

@@ -6,19 +6,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-
 const Navbar = () => {
   const contextUser = useContext(UserContext);
   const [userData, setUserData] = useState();
-  const router = useRouter();
+
   useEffect(() => {
-
     setUserData(contextUser.user);
-    console.log("first", contextUser)
-  }, [contextUser.user])
+    console.log("first", contextUser);
+  }, [contextUser.user]);
 
-
-
+  
+  const router = useRouter();
+ 
   const logout = async (e) => {
     e.preventDefault();
     try {
@@ -75,7 +74,6 @@ const Navbar = () => {
                 </button>
               </li>
               <li>
-                {userData.name}
               </li>
             </>
           )}
