@@ -21,12 +21,12 @@ const AddTaskPage = () => {
   const [formData, setFormData] = useState(initialFormData);
   const contextUser = useContext(UserContext);
   const [userData, setUserData] = useState();
- 
-  useEffect(() => {
-    setUserData(contextUser?.user);
 
+  useEffect(() => {
+    setUserData(contextUser.user);
+    console.log("first", contextUser);
   }, [contextUser.user]);
-  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +40,10 @@ const AddTaskPage = () => {
     e.preventDefault();
     // Handle form submission here
     // Add validations over here
+
+    console.log("This is the sece of userdata ", contextUser);
     try {
+     formData.userId=userData.userId;
       const result = await addTask(formData);
       toast.success("Task added successfully", {
         position: 'top-left',
@@ -123,22 +126,20 @@ const AddTaskPage = () => {
                 label="User ID"
                 name="userId"
                 fullWidth
-                value={userData?._id || ' '}
-                onChange={handleChange}
+                value={userData?.userId || ' '}
                 margin="normal"
                 disabled
                 InputLabelProps={{ shrink: true }}
               />
             </Grid>
           </Grid>
-          <div className="text-center ">
-            <button
+          <div className="text-center mt-5 px-4 py-2">
+            {userData?.userId && <>  <button
               type="submit"
-              disabled={!(userData?._id)}
-              className="bg-blue-500 mt-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              className="bg-blue-500  text-white px-4 py-2  rounded-md hover:bg-blue-600"
             >
               Add task
-            </button>
+            </button></>}
           </div>
         </form>
       </div>

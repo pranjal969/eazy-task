@@ -54,8 +54,8 @@ const Navbar = () => {
           {userData && (
             <>
               <li className="transform hover:scale-105">
-                <Link href="/" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-                  Home
+                <Link href="/show-task" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  View Task
                 </Link>
               </li>
               <li className="transform hover:scale-105">

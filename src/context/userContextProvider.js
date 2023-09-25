@@ -1,24 +1,37 @@
+// userContextProvider.js
+
 'use client'
 import React, { useEffect, useState } from 'react'
 import UserContext from './userContext'
 import { toast } from 'react-toastify';
 import { getCurrentUser } from '@/services/userService';
 
+export const getdecodedToken = async () => {
+    try {
+        const userDetails = await getCurrentUser();
+        
+        return { ...userDetails };
+    } catch (error) {
+        console.log(error);
+        // Handle the error here or throw it to be caught by the calling component
+        throw error;
+    }
+}
+
 const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     useEffect(() => {
-        async function getdecodedToken() {
+        async function fetchData() {
             try {
-                const userDetails = await getCurrentUser();
-                setUser({ ...userDetails });
- 
+                const {user} = await getdecodedToken();
+                setUser({ ...user });
             } catch (error) {
                 console.log(error);
-               // toast.error("Error validating token")
+                // Handle the error here
             }
         }
-        getdecodedToken();
-    }, [])
+        fetchData();
+    }, []);
 
     return (
         <UserContext.Provider value={{ user, setUser }}>
@@ -27,4 +40,4 @@ const UserContextProvider = ({ children }) => {
     )
 }
 
-export default UserContextProvider
+export default UserContextProvider;

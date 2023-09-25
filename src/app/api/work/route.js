@@ -37,6 +37,6 @@ export const POST = async (request) => {
         return NextResponse.json(createdWork, { status: 201, statusText: "createdWork" });
     } catch (error) {
         console.log(error);
-        return NextResponse.json({ message: "Error creating work", status: "False" }, { status: 200 });
+        return NextResponse.json({ message: "Error creating work", status: "False" }, { status: 400 });
     }
 }

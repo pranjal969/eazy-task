@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Grid, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import UserContext from '@/context/userContext';
+import {getdecodedToken} from '@/context/userContextProvider'
 
 const initialFormData = {
   email: '',
@@ -23,16 +24,29 @@ const LoginPage = () => {
     }));
 
   };
+
+  const callGetdecodedToken = async () => {
+    try {
+      const {user}  = await getdecodedToken(); // Assuming getdecodedToken is in scope
+      context.setUser(user);
+    } catch (error) {
+      console.log(error);
+      // Handle the error here
+    }
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission here
     try {
       console.log('Form submitted with login data:', formData);
       const result = await loginApi(formData);
-      const rem =  context.setUser(result.user);
+      //const rem =  context.setUser(result.user);
+      
+     await callGetdecodedToken();
       console.log(context)
-
-      router.push('/profile');
+      router.push('/show-task');
       toast.success(result.message, {
         position: 'top-left',
         autoClose: 2000,
