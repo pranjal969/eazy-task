@@ -3,44 +3,58 @@ import { useContext, useEffect, useState } from 'react';
 import UserContext from '@/context/userContext';
 import { viewTaskByUserId } from '@/services/taskService';
 import { toast } from 'react-toastify';
-const page = () => {
-    const contextUser = useContext(UserContext);
-    const [userData, setUserData] = useState();
-   
-    useEffect(() => {
-      setUserData(contextUser?.user);
-  
-    }, [contextUser.user]);
 
-const fetchData= async ()=>{
-    console.log(userData)
-    try {
-        const result =await viewTaskByUserId (userData?.userId);
-        toast.success("Task fetched", {
-          position: 'top-left',
-          autoClose: 3000,
-        });
-        console.log(result)
+const Page = () => {
+  const contextUser = useContext(UserContext);
+  const [userData, setUserData] = useState();
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    setUserData(contextUser?.user);
+  }, [contextUser.user]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await viewTaskByUserId(userData?.userId);
+        setTasks(result);
+        console.log(result);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         toast.error("Error getting task", {
           position: 'top-left',
           autoClose: 3000,
         });
       }
-}
+    };
 
-
+    if (userData) {
+      fetchData();
+    }
+  }, [userData]);
 
   return (
-
-
-    <div>page
-
-
-        <button onClick={fetchData}> Click me</button>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {tasks.map((task) => (
+        <div key={task._id} className="bg-white shadow-md rounded-md p-4">
+          <div className="font-bold text-lg">{task.title}</div>
+          <div className="text-gray-500">{task.description}</div>
+          <div className="mt-2">
+            <span className="font-semibold">Status: </span>
+            {task.status}
+          </div>
+          <div className="mt-2">
+            <span className="font-semibold">Author: </span>
+            {task.author}
+          </div>
+          <div className="mt-2">
+            <span className="font-semibold">Category: </span>
+            {task.category}
+          </div>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
