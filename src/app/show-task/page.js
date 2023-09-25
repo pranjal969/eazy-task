@@ -34,25 +34,29 @@ const Page = () => {
   }, [userData]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {tasks.map((task) => (
-        <div key={task._id} className="bg-white shadow-md rounded-md p-4">
-          <div className="font-bold text-lg">{task.title}</div>
-          <div className="text-gray-500">{task.description}</div>
-          <div className="mt-2">
-            <span className="font-semibold">Status: </span>
-            {task.status}
+    <div className='bg-[#e4e5e9]  min-h-screen'>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+        {tasks.map((task) => (
+          <div key={task._id} className="bg-gradient-to-r from-[#a5b4fc] via-[#aeb4cf] to-[#e77561] shadow-md rounded-md p-4 mx-6 my-6 ">
+
+            <div className="font-bold text-lg">{task.title}</div>
+            <div className="text-gray-500">{task.description}</div>
+            <div className="mt-2">
+              <span className="font-semibold">Status: </span>
+              {task.status}
+            </div>
+            <div className="mt-2">
+              <span className="font-semibold">Author: </span>
+              {task.author}
+            </div>
+            <div className="mt-2">
+              <span className="font-semibold">Category: </span>
+              {task.category}
+            </div>
           </div>
-          <div className="mt-2">
-            <span className="font-semibold">Author: </span>
-            {task.author}
-          </div>
-          <div className="mt-2">
-            <span className="font-semibold">Category: </span>
-            {task.category}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

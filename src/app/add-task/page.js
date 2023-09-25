@@ -59,7 +59,7 @@ const AddTaskPage = () => {
   };
 
   return (
-    <div className='fluid-container bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]'>
+    <div className='fluid-container bg-gradient-to-r from-[#6e8acc] via-[#be95e2] to-[#6e8acc]  min-h-screen'>
       <div className="flex justify-center items-center ">
         <form onSubmit={handleSubmit} className="w-full ml-2 mr-2  max-w-4xl mt-5 p-4 rounded shadow-md bg-[#e5e9f1] mb-4 ">
           <div className='flex justify-center mt-4'>
