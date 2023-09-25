@@ -33,35 +33,42 @@ export const DELETE = async (request, { params }) => {
 
 // Update user by id
 export const PUT = async (request, { params }) => {
-
-    const { userId } = await params;
-
     try {
-        //Get the user details from db
-        const user = await User.findById(userId);
-        if (user) {
-            // fetch user details from request
-            const { name, password, about, profileUrl, address } = await request.json();
-            //create user object with user model
-
-            user.name = name;
-            user.password = password;
-            user.about = about;
-            user.profileUrl = profileUrl;
-            user.address.street = address.street || "";
-            user.address.street = address.city || "";
-            user.address.street = address.pincode || "";
-
-            const savedUser = user.save();
-            return NextResponse.json({ message: "User details updated successfully", status: "True" }, { status: 200 });
+      // Extract the userId from params
+      const { userId } = params;
+  
+      // Get the user details from the database
+      const user = await User.findById(userId);
+  
+      if (user) {
+        // Extract user details from the request body
+        const { name, password, about, profileUrl, address } = await request.json();
+  
+        // Update the user object with new data
+        user.name = name;
+        user.password = password;
+        user.about = about;
+        user.profileUrl = profileUrl;
+  
+        // Update address if provided
+        if (address) {
+          user.address.street = address.street || "";
+          user.address.city = address.city || "";
+          user.address.pincode = address.pincode || "";
         }
-        else {
-            return NextResponse.json({ message: "User not found", status: "True" }, { status: 200 });
-        }
-
+  
+        // Save the updated user object
+        await user.save();
+  
+        // Return a success response
+        return NextResponse.json({ message: "User details updated successfully", status: "True" }, { status: 200 });
+      } else {
+        // Return a not found response if the user doesn't exist
+        return NextResponse.json({ message: "User not found", status: "False" }, { status: 404 });
+      }
     } catch (error) {
-        return NextResponse.json({ message: "Error updating user ", status: "False" }, { status: 200 });
+      // Handle errors and return an error response
+      return NextResponse.json({ message: "Error updating user", status: "False" }, { status: 500 });
     }
-
-}
-
+  };
+  

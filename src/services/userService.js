@@ -23,3 +23,9 @@ export const logoutApi = async () => {
     const result = await httpAxios.post("logout").then((response) => response.data);
     return result;
 }
+
+//Update user api
+export const updateUser = async (userData,userId) => {
+    const result = await httpAxios.put(`users/${userId}`,userData).then((response) => response.data);
+    return result;
+}
