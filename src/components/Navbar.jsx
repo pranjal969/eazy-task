@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+
 const Navbar = () => {
   const contextUser = useContext(UserContext);
   const [userData, setUserData] = useState();
@@ -14,28 +15,17 @@ const Navbar = () => {
     setUserData(contextUser.user);
   }, [contextUser.user]);
 
-  
+
   const router = useRouter();
- 
-  const logout = async (e) => {
-    e.preventDefault();
+  const logout = async () => {
     try {
       const result = await logoutApi();
       contextUser.setUser(undefined);
-      router.push("/login")
-      toast.success("Logout Success", {
-        position: 'top-left',
-        autoClose: 2000,
-      });
-
+      router.push('/login');
     } catch (error) {
-      const temp = await contextUser.setUser(undefined);
-      toast.error("Error in logout !!", {
-        position: 'top-left',
-        autoClose: 2000,
-      })
+      console.error('Error in logout:', error);
     }
-  }
+  };
   return (
     <nav className="bg-gradient-to-r from-[#a5b4fc] via-[#2c44bb] to-[#e77561] p-1 sticky top-0 z-50">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
