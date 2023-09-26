@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
-
-export async function middleware(request) {
-  try {
+export async function  middleware(request) {
+  try { 
+    
     const authToken = await request.cookies.get("authToken")?.value;
     const path = await request.nextUrl.pathname;
     const accessAfterLoginUrls = ['/add-task', '/profile', '/show-task'];
     const NoAccessAfterLoginUrls = ['/signup', '/login', '/'];
     switch (true) {
+     
       case path.startsWith('/api'):
         if (!authToken) {
           return NextResponse.json(
@@ -28,15 +29,17 @@ export async function middleware(request) {
 
       case accessAfterLoginUrls.includes(path):
         if (!authToken) {
+          console.log("No access wrae executed");
           return NextResponse.redirect(new URL('/login', request.url));
         }
+        console.log("No acces111 wrae executed");
         break;
 
       default:
         break;
     }
   } catch (error) {
-
+console.log("Middle Ware Error ",error)
   }
 }
 
