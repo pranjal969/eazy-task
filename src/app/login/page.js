@@ -13,9 +13,9 @@ const initialFormData = {
 };
 
 const LoginPage = () => {
-  const [loading, setLoading] = useState(false); // Add a loading state
   const [formData, setFormData] = useState(initialFormData);
   const context = useContext(UserContext);
+  
   const router = useRouter();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +40,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      setLoading(true); // Set loading to true when the button is clicked
+      context.setLoading(true); // Set loading to true when the button is clicked
 
       const result = await loginApi(formData);
       await callGetdecodedToken();
@@ -55,9 +55,8 @@ const LoginPage = () => {
         position: 'top-left',
         autoClose: 2000,
       });
-    } finally {
-      setLoading(false); // Set loading back to false after redirection or error
-    }
+      context.setLoading(false);
+    } 
   };
 
   return (
@@ -101,8 +100,8 @@ const LoginPage = () => {
             </Grid>
           </Grid>
           <div className="text-center">
-            {loading ? ( // Show loader while loading is true
-             <div className='mt-4'> <CircularProgress size={24} color="primary" /> </div>
+            {context.loading ? ( // Show loader while loading is true
+             <div className='mt-4'> <CircularProgress size={28} thickness={6} color="primary" /> </div>
             ) : (
               <button
                 type="submit"

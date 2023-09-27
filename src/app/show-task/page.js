@@ -10,12 +10,12 @@ const Page = () => {
   const contextUser = useContext(UserContext);
   const [userData, setUserData] = useState();
   const [tasks, setTasks] = useState([]);
-
+  contextUser.setLoading(false);
   const handleDelete = async (taskId) => {
     try {
-      let c=0;
+      let c = 0;
       console.log(c);
-      c=c+1;
+      c = c + 1;
       await deleteTaskById(taskId);
       const updatedTasks = tasks.filter((task) => task._id !== taskId); // Filter tasks correctly
       setTasks(updatedTasks);
@@ -30,7 +30,7 @@ const Page = () => {
       });
     }
   }
-  
+
 
   useEffect(() => {
     setUserData(contextUser?.user);
