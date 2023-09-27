@@ -17,7 +17,7 @@ const initialFormData = {
 };
 
 
-const AddTaskPage = () => {
+const AddTaskPage = ({ user }) => {
   const [formData, setFormData] = useState(initialFormData);
   const contextUser = useContext(UserContext);
   const [userData, setUserData] = useState();
@@ -146,3 +146,6 @@ const AddTaskPage = () => {
 };
 
 export default AddTaskPage;
+
+
+

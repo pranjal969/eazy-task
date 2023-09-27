@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { addUser, loginApi } from '@/services/userService';
 import { toast } from 'react-toastify';
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, CircularProgress } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import UserContext from '@/context/userContext';
 import {getdecodedToken} from '@/context/userContextProvider'
@@ -13,6 +13,7 @@ const initialFormData = {
 };
 
 const LoginPage = () => {
+  const [loading, setLoading] = useState(false); // Add a loading state
   const [formData, setFormData] = useState(initialFormData);
   const context = useContext(UserContext);
   const router = useRouter();
@@ -37,25 +38,25 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
+
     try {
+      setLoading(true); // Set loading to true when the button is clicked
+
       const result = await loginApi(formData);
-      //const rem =  context.setUser(result.user);
-      
-     await callGetdecodedToken();
+      await callGetdecodedToken();
       router.push('/show-task');
-      toast.success(result.message, {
-        position: 'top-left',
-        autoClose: 2000,
-      });
-      //  setFormData(initialFormData);
-
-
+      // toast.success(result.message, {
+      //   position: 'top-left',
+      //   autoClose: 2000,
+      // });
+      // Clear the form data if needed: setFormData(initialFormData);
     } catch (error) {
       toast.error(error.response.data.message, {
         position: 'top-left',
         autoClose: 2000,
       });
+    } finally {
+      setLoading(false); // Set loading back to false after redirection or error
     }
   };
 
@@ -99,13 +100,17 @@ const LoginPage = () => {
               />
             </Grid>
           </Grid>
-          <div className="text-center ">
-            <button
-              type="submit"
-              className="bg-blue-500 mt-5 mb-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-            >
-              Login
-            </button>
+          <div className="text-center">
+            {loading ? ( // Show loader while loading is true
+             <div className='mt-4'> <CircularProgress size={24} color="primary" /> </div>
+            ) : (
+              <button
+                type="submit"
+                className="bg-blue-500 mt-5 mb-5 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              >
+                Login
+              </button>
+            )}
           </div>
         </form>
       </div>
