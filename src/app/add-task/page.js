@@ -35,7 +35,8 @@ const AddTaskPage = () => {
       toast.success("Task added successfully", {
         position: 'top-left',
         autoClose: 3000,
-      })
+      });
+      setFormData(initialFormData);
     } catch (error) {
       console.log(error)
     }

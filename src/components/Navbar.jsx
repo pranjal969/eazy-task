@@ -4,7 +4,7 @@ import React from 'react';
 const Navbar = () => {
   return ( 
       // changes in nav 
-    <nav className="bg-[#a5b4fc] p-1 top-0 z-10 fixed w-full">
+    <nav className="bg-[#a5b4fc] p-1 sticky top-0 z-50">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <Link href="/" className="text-white text-xl font-bold flex items-center mb-2 md:mb-0">
           <img src="task.png" width="60px" height="30px" alt="" />
@@ -16,7 +16,7 @@ const Navbar = () => {
         <ul className="navbar-nav flex space-x-4 md:space-x-6 mt-2 md:mt-0 md:flex-row">
         <li><Link href="/" className="text-white hover:text-blue-100">Home</Link></li>
           <li><Link href="/add-task" className="text-white  hover:text-blue-100">Add Task</Link></li>
-          <li><Link href="/about" className="text-white  hover:text-blue-100">About</Link></li>
+          <li><Link href="/signup" className="text-white  hover:text-blue-100">Signup</Link></li>
           <li><Link href="/profile" className="text-white  hover:text-blue-100">Profile</Link></li>
           <li><Link href="#" className="text-white  hover:text-blue-100">Logout</Link></li>
         </ul>
