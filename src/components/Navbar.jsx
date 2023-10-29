@@ -65,6 +65,16 @@ const Navbar = () => {
           )}
           {!userData && (
             <>
+             <li className="transform hover:scale-105">
+                <Link href="/dob" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  NOY Calci
+                </Link>
+              </li>
+              <li className="transform hover:scale-105">
+                <Link href="/time" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                  WH Calci
+                </Link>
+              </li>
               <li className="transform hover:scale-105">
                 <Link href="/login" className="text-white text-md py-1 px-2 rounded-lg shadow-md transition duration-300 ease-in-out">
                   Login
