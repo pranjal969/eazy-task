@@ -43,6 +43,8 @@ const Testimonials = () => {
                 src={testimonial.avatar}
                 alt={testimonial.name}
                 className="w-20 h-20 mx-auto rounded-full mb-4 "
+                onContextMenu={(e) => e.preventDefault()}
+
               />
               <p className="text-gray-600 mb-4">{testimonial.content}</p>
               <p className="font-semibold">{testimonial.name}</p>
