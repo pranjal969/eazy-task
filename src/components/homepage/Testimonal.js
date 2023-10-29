@@ -8,22 +8,22 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'John Doe',
-      avatar: '/user.png', // Replace with the actual image URL
+      name: 'Aman Saxena',
+      avatar: '/aman.png', // Replace with the actual image URL
       content:
         'Eazy Task has transformed the way I manage my tasks. It\'s incredibly user-friendly and has improved my productivity significantly.',
     },
     {
       id: 2,
-      name: 'Jane Smith',
-      avatar: '/user.png', // Replace with the actual image URL
+      name: 'Dhiren Pratap',
+      avatar: '/dhiren.png', // Replace with the actual image URL
       content:
         'I love Eazy Task! It has all the features I need to stay organized and on top of my tasks. Highly recommended!',
     },
     {
       id: 3,
-      name: 'Bob Johnson',
-      avatar: '/user.png', // Replace with the actual image URL
+      name: 'Rosalie Pfeiffer',
+      avatar: '/az123userds.png', // Replace with the actual image URL
       content:
         'The reminders feature in Eazy Task is a game-changer. It ensures I never miss a deadline, and the interface is delightful to use.',
     },
